@@ -1,20 +1,24 @@
-import Navbar from '@/components/navbar';
 import React from 'react';
 import StepForm from './components/stepForm';
 import Footer from '@/components/footer';
 import CategorySideMenu from './components/categorySideMenu';
 import TutorProfileSection from './components/tutorProfileSection';
+import { Subjects } from '@/types/subject.type';
+import api from '@/server/api';
 
-export default function Page() {
+export default async function Page() {
+  const response = await api.subject.getSubjects() as { data: { data: Subjects } };
+  const subjects: Subjects = response.data.data ?? [];
+
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
-      <StepForm />
-      <div className=" md:flex  px-24 py-6">
-        <CategorySideMenu />
+      <StepForm subjects={subjects} />
+      <div className="md:flex px-24 py-6">
+        <CategorySideMenu subjects={subjects} />
         <TutorProfileSection />
       </div>
       <Footer />
     </div>
   );
 }
+

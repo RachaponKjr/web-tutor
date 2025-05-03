@@ -1,14 +1,8 @@
+import { Subjects } from '@/types/subject.type';
 import React from 'react';
-import {
-  FaPaintBrush,
-  FaCalculator,
-  FaLanguage,
-  FaDragon,
-  FaDna,
-  FaAtom,
-} from 'react-icons/fa';
 
-export default function categorySection() {
+export default function categorySection({ subjects }: { subjects: Subjects }) {
+  console.log(subjects);
   return (
     <div>
       <section className="py-16 bg-white">
@@ -25,17 +19,10 @@ export default function categorySection() {
             </a>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
-            {[
-              { icon: <FaPaintBrush />, label: 'ศิลปะ' },
-              { icon: <FaCalculator />, label: 'คณิตศาสตร์' },
-              { icon: <FaLanguage />, label: 'ภาษาอังกฤษ' },
-              { icon: <FaDragon />, label: 'ภาษาจีน' },
-              { icon: <FaDna />, label: 'ชีววิทยา' },
-              { icon: <FaAtom />, label: 'ฟิสิกส์' },
-            ].map((item, index) => (
+            {subjects.slice(0, 6).map((item, index) => (
               <div key={index}>
                 <a
-                  href={`/category?category=${encodeURIComponent(item.label)}`}
+                  href={`/category?subjectId=${encodeURIComponent(item.id)}&subject=${encodeURIComponent(item.name)}`}
                   className="text-indigo-600 hover:underline"
                 >
                   <div className="flex flex-col items-center bg-indigo-50 p-4 rounded-lg shadow hover:shadow-md transition">
@@ -43,7 +30,7 @@ export default function categorySection() {
                       {item.icon}
                     </div>
                     <span className="text-xl font-medium text-gray-700 text-center">
-                      {item.label}
+                      {item.name}
                     </span>
                   </div>
                 </a>
