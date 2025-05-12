@@ -1,9 +1,9 @@
 {
-  "/favicon.ico/route": "/favicon.ico",
   "/_not-found/page": "/_not-found",
-  "/jobs/page": "/jobs",
-  "/category/page": "/category",
-  "/jobs-detail/page": "/jobs-detail",
+  "/favicon.ico/route": "/favicon.ico",
   "/page": "/",
+  "/category/page": "/category",
+  "/jobs/page": "/jobs",
+  "/jobs-detail/page": "/jobs-detail",
   "/tutor/page": "/tutor"
 }

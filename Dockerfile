@@ -1,22 +1,34 @@
+# Step 1: Build stage
 FROM node:20
 
 # Set working directory
-WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
+WORKDIR /app
 
 # Install dependencies
-RUN npm ci --omit=dev
+COPY package*.json ./
+RUN npm install
 
-# Copy the rest of the app source
+# Copy source code
 COPY . .
+
+# Build the app
+RUN npm run build
+
+# Set working directory
+WORKDIR /app
+
+# Copy only necessary files
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/next.config.js ./
 
 # Expose port
 EXPOSE 3000
 
-# Set environment variable
+# Set NODE_ENV
 ENV NODE_ENV=production
 
-# Start the app
+# Start the server
 CMD ["npm", "start"]
