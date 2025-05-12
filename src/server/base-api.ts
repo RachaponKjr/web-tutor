@@ -6,7 +6,7 @@ import { getCookie } from "@/lib/cookie";
 // const BASE_URL: string = "http://127.0.0.1:3001";
 
 // production
-const BASE_URL: string = "http://119.59.103.110:3110/";
+const BASE_URL: string = "http://totur-backend:3110/";
 
 type FetchConfig = RequestInit & { headers?: Record<string, string> };
 
