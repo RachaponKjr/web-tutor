@@ -28,7 +28,7 @@ const TimePickerRange: React.FC<Props> = ({ label, onChange }) => {
     <div className="flex flex-col gap-3 w-full max-w-xl p-4 bg-white rounded-2xl shadow-md">
       {label && <h4 className="text-base font-semibold text-gray-700">{label}</h4>}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         {/* Start Time */}
         <div className="flex flex-col">
           <label className="text-sm text-gray-600 mb-1">เวลาเริ่มต้น</label>

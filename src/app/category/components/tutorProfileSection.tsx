@@ -1,54 +1,29 @@
-import React from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+'use client'
+import React, { useCallback, useEffect } from 'react';
+import api from '@/server/api';
+import { TutorProps } from '../page';
 import TutorCard from './tutorCard';
+import { useSearchParams } from 'next/navigation';
 
 export default function tutorProfileSection() {
-  const mockTutors = [
-    {
-      name: 'Ajarn Pla Tippawan',
-      reviews: 11,
-      image: 'https://placehold.co/300x200',
-      teachingTypes: ['สอนออนไลน์', 'สอนตัวต่อตัว'],
-      experience:
-        'รวมทั้งประสบการณ์สอน การสอบภาษาอังกฤษ ได้แก่ CU-TEP, TU-GET, SAT, GED reading-writing, GED Social, IGCSE ESL/EFL, TOEFL, IELTS',
-      technique: 'สอนสนุก เข้าใจง่าย ประยุกต์ใช้ได้จริง และได้ผลไว',
-      additional:
-        'อาจารย์เป็นผู้เขียนงานวิจัย และมีผลงานวิจัยการสอนภาษาอังกฤษ…',
-    },
-    {
-      name: 'Kru Joe English',
-      reviews: 7,
-      image: 'https://placehold.co/300x200',
-      teachingTypes: ['สอนออนไลน์'],
-      experience:
-        'สอน IELTS TOEFL Writing มานานกว่า 10 ปี พร้อมเทคนิคและตัวอย่างจริง',
-      technique:
-        'โฟกัสจุดอ่อนของผู้เรียน และออกแบบเนื้อหาตามเป้าหมายของแต่ละคน',
-      additional:
-        'ผ่านการอบรมจาก Cambridge English และมีใบรับรองการสอนภาษาอังกฤษ',
-    },
-    {
-      name: 'Ajarn May',
-      reviews: 15,
-      image: 'https://placehold.co/300x200',
-      teachingTypes: ['สอนตัวต่อตัว'],
-      experience:
-        'มีประสบการณ์สอนระดับประถม-มัธยม พร้อมเตรียมสอบภาษาอังกฤษเข้า ม.1 และ ม.4',
-      technique:
-        'ใช้สื่อการสอนหลากหลาย เข้าใจง่าย และเน้นความมั่นใจในการใช้ภาษา',
-      additional: 'ได้รับรางวัลครูสอนดีเด่นจากโรงเรียนในกรุงเทพ',
-    },
-    {
-      name: 'Ajarn Pla Tippawan',
-      reviews: 11,
-      image: 'https://placehold.co/300x200',
-      teachingTypes: ['สอนออนไลน์', 'สอนตัวต่อตัว'],
-      experience:
-        'รวมทั้งประสบการณ์สอน การสอบภาษาอังกฤษ ได้แก่ CU-TEP, TU-GET, SAT, GED reading-writing, GED Social, IGCSE ESL/EFL, TOEFL, IELTS',
-      technique: 'สอนสนุก เข้าใจง่าย ประยุกต์ใช้ได้จริง และได้ผลไว',
-      additional:
-        'อาจารย์เป็นผู้เขียนงานวิจัย และมีผลงานวิจัยการสอนภาษาอังกฤษ…',
-    },
-  ];
+  const [tutorData, setTutorData] = React.useState<TutorProps[]>([]);
+  const searchParams = useSearchParams();
+  const subjectId = searchParams.get('subjectId');
+  const getTutorSubjects = useCallback(async () => {
+    try {
+      await api.tutor.getTutorSubjects({ id: Number(subjectId) }).then(({ data }) =>
+        setTutorData(data?.data as TutorProps[])
+      );
+    } catch {
+      console.log('error');
+    }
+  }, [subjectId])
+
+  useEffect(() => {
+    void getTutorSubjects();
+  }, [getTutorSubjects])
+
   return (
     <div className="w-full md:w-3/4">
       <h2 className="text-3xl font-bold text-gray-800 mb-2">ติวเตอร์ยอดนิยม</h2>
@@ -81,7 +56,7 @@ export default function tutorProfileSection() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {mockTutors.map((tutor, index) => (
+        {tutorData && tutorData.map((tutor, index) => (
           <TutorCard key={index} {...tutor} />
         ))}
       </div>

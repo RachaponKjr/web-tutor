@@ -1,5 +1,6 @@
 import { RequestForm } from "@/types/booking";
-import { fetchFromApi } from "../base-api";
+import { ApiResponse, fetchFromApi } from "../base-api";
+import { TutorProps } from "@/app/category/page";
 
 const bookingTutor = async ({ data }: { data: RequestForm }) => {
   return await fetchFromApi({
@@ -8,4 +9,22 @@ const bookingTutor = async ({ data }: { data: RequestForm }) => {
   });
 };
 
-export { bookingTutor };
+const getTutorSubjects = async ({
+  id,
+}: {
+  id: number;
+}): Promise<ApiResponse<TutorProps>> => {
+  return await fetchFromApi({
+    path: `/api/v1/user/tutors/${id}`,
+    config: { method: "GET" },
+  });
+};
+
+const getTutorById = async ({ id }: { id: number }) => {
+  return await fetchFromApi({
+    path: `/api/v1/user/tutor/${id}`,
+    config: { method: "GET" },
+  });
+};
+
+export { bookingTutor, getTutorSubjects, getTutorById };

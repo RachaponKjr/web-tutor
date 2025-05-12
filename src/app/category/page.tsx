@@ -6,8 +6,36 @@ import TutorProfileSection from './components/tutorProfileSection';
 import { Subjects } from '@/types/subject.type';
 import api from '@/server/api';
 
+export interface TutorProps {
+  name: string;
+  id: number;
+  userId: number;
+  tutorName: string;
+  province: string;
+  image: string;
+  pricePerHour: string;
+  languageTaught: string;
+  sex: string;
+  description: string;
+  phoneNumber: string;
+  verifyed: boolean;
+  technique: string;
+  teachingMethod: string;
+  teachingTime: string;
+  timeStart: string;
+  timeEnd: string;
+  availableTime: string;
+  experiences: {
+    id: number;
+    detail: string;
+  }[];
+}
+
+
+
 export default async function Page() {
   const response = await api.subject.getSubjects() as { data: { data: Subjects } };
+
   const subjects: Subjects = response.data.data ?? [];
 
   return (

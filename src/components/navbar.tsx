@@ -20,7 +20,7 @@ interface RegisterResProps {
   data: ResRegister
 }
 
-export default function Navbar({ subjects }: { subjects: Subjects }) {
+export default function Navbar({ subjects }: { subjects?: Subjects }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [step, setStep] = useState(0);
 
@@ -132,21 +132,21 @@ export default function Navbar({ subjects }: { subjects: Subjects }) {
         <Link href="/" className="text-2xl font-bold text-blue-600">
           Tutor
         </Link>
-
+{/* 
         <nav className="hidden md:flex space-x-6 text-gray-700">
           <Link href="/search" className="hover:text-blue-500">ค้นหาครู</Link>
           <Link href="/apply" className="hover:text-blue-500">สมัครเป็นครู</Link>
           <Link href="/articles" className="hover:text-blue-500">บทความ</Link>
-        </nav>
+        </nav> */}
 
-        <div className="hidden md:flex space-x-2">
+        <div className="flex space-x-2">
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger>
               <button className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm cursor-pointer">
                 ลงทะเบียน เป็น ติวเตอร์
               </button>
             </DialogTrigger>
-            <DialogContent className="!max-w-lg max-h-[90vh] overflow-auto">
+            <DialogContent className="max-w-md lg:max-w-xl max-h-[90vh] overflow-auto">
               <h6 className="font-semibold text-lg mb-2">ลงทะเบียน เป็น ติวเตอร์ กับ เรา</h6>
               <form className="space-y-4 !w-full" onSubmit={(e) => e.preventDefault()}>
                 {step === 0 && (
@@ -211,18 +211,18 @@ export default function Navbar({ subjects }: { subjects: Subjects }) {
           </Dialog>
         </div>
 
-        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+        {/* <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        </button> */}
       </div>
 
-      {menuOpen && (
+      {/* {menuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2 text-gray-700">
           <Link href="/search" className="block hover:text-blue-500">ค้นหาครู</Link>
           <Link href="/apply" className="block hover:text-blue-500">สมัครเป็นครู</Link>
           <Link href="/articles" className="block hover:text-blue-500">บทความ</Link>
         </div>
-      )}
+      )} */}
     </header>
   );
 }

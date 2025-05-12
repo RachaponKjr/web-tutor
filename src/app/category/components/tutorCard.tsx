@@ -1,51 +1,41 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { TutorProps } from '../page';
 
-type Tutor = {
-  name: string;
-  reviews: number;
-  image: string;
-  teachingTypes: string[];
-  experience: string;
-  technique: string;
-  additional: string;
-};
 
 export default function TutorCard({
-  name,
-  reviews,
+  description,
+  userId,
   image,
-  teachingTypes,
-  experience,
+  name,
   technique,
-  additional,
-}: Tutor) {
+  teachingMethod,
+  tutorName,
+}: TutorProps) {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      <img
+      <Image
         src={image}
         alt={name}
-        className="w-full h-40 object-cover rounded-md mb-4"
+        width={300}
+        height={300}
+        className="object-cover aspect-[16/12] rounded-md mb-4"
       />
-      <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
-      <p className="text-sm text-gray-500 mb-1">{reviews} รีวิว</p>
+      <h3 className="text-xl font-semibold text-gray-800 line-clamp-1">{tutorName}</h3>
       <p className="text-sm text-indigo-600 mb-2">
-        {teachingTypes.join(' • ')}
+        <strong>รูปเเบบการสอน : </strong>{teachingMethod}
       </p>
 
-      <p className="text-gray-700 text-sm mb-2">{experience}</p>
-
-      <p className="text-gray-700 text-sm mb-2">
+      <p className="text-gray-700 text-sm mb-2 line-clamp-2">
         <strong className="font-medium">เทคนิคการสอน:</strong> {technique}
       </p>
 
-      <p className="text-gray-700 text-sm">{additional}</p>
+      <p className="text-gray-700 text-sm line-clamp-3">{description}</p>
 
       <div className="mt-4">
-        <Link href="/tutor">
-          <button className="inline-block cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition text-sm">
-            ดูโปรไฟล์ติวเตอร์
-          </button>
+        <Link className="inline-block cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition text-sm" href={`/tutor?tutorId=${userId}`}>
+          ดูโปรไฟล์ติวเตอร์
         </Link>
       </div>
     </div>

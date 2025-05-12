@@ -11,7 +11,7 @@ export default function categorySideMenu({ subjects }: { subjects: Subjects }) {
         {subjects.slice(0, 6).map((item, index) => (
           <li key={index}>
             <a
-              href={`/category?category=${encodeURIComponent(item.id)}`}
+              href={`/category?subjectId=${encodeURIComponent(item.id)}&subject=${encodeURIComponent(item.name)}`}
               className="text-lg text-gray-800 hover:text-indigo-500"
             >
               {item.name}

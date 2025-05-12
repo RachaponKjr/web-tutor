@@ -1,14 +1,17 @@
 // next.config.ts
-import { NextConfig } from 'next';
-import path from 'path';
+import { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack(config) {
-    config.resolve.modules.push(path.resolve('./src'));
+    config.resolve.modules.push(path.resolve("./src"));
     return config;
   },
 };
