@@ -3,10 +3,10 @@
 import { getCookie } from "@/lib/cookie";
 
 // local
-const BASE_URL: string = "http://127.0.0.1:3001";
+// const BASE_URL: string = "http://127.0.0.1:3001";
 
 // production
-// const BASE_URL: string = "http://119.59.103.110:3001";
+const BASE_URL: string = "http://119.59.103.110:3001";
 
 type FetchConfig = RequestInit & { headers?: Record<string, string> };
 
