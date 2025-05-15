@@ -1,11 +1,15 @@
-import { RequestForm } from "@/types/booking";
+import { RequestData } from "@/app/category/components/stepForm";
 import { ApiResponse, fetchFromApi } from "../base-api";
 import { TutorProps } from "@/app/category/page";
 
-const bookingTutor = async ({ data }: { data: RequestForm }) => {
+const bookingTutor = async ({ data }: { data: RequestData }) => {
   return await fetchFromApi({
     path: "/api/v1/booking/create",
-    config: { method: "POST", body: JSON.stringify(data) },
+    config: {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    },
   });
 };
 

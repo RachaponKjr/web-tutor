@@ -4,8 +4,10 @@ import Image from 'next/image';
 import React from 'react';
 
 export default function profileTutorCard({ tutorData }: { tutorData: TutorProps }) {
-  console.log('tutorData', tutorData);
 
+  if (!tutorData) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="bg-white rounded-lg max-w-2xl place-self-center shadow-lg p-8">
       <div className="flex flex-col gap-4 lg:flex-row items-center mb-6">
@@ -34,15 +36,15 @@ export default function profileTutorCard({ tutorData }: { tutorData: TutorProps 
       {/* Tutor Experience */}
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         ประสบการณ์การสอน:
-          {Array.isArray(tutorData.experiences) && tutorData.experiences.length > 0 && (
-            <ul className="list-disc pl-6 text-gray-700">
-              {tutorData.experiences.map((exp, index) => (
-                <li key={index} className="text-base font-normal text-gray-700">
-                  {exp.detail}
-                </li>
-              ))}
-            </ul>
-          )}
+        {Array.isArray(tutorData.experiences) && tutorData.experiences.length > 0 && (
+          <ul className="list-disc pl-6 text-gray-700">
+            {tutorData.experiences.map((exp, index) => (
+              <li key={index} className="text-base font-normal text-gray-700">
+                {exp.detail}
+              </li>
+            ))}
+          </ul>
+        )}
       </h2>
       <div className='text-xl font-semibold text-gray-800 '>
         <span>เทคนิคการสอน:</span>

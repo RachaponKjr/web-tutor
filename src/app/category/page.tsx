@@ -41,7 +41,7 @@ export default async function Page() {
   return (
     <div className="min-h-screen bg-white">
       <StepForm subjects={subjects} />
-      <div className="md:flex px-24 py-6">
+      <div className="md:flex px-24 py-6 border-t-2 border-gray-400/80">
         <CategorySideMenu subjects={subjects} />
         <TutorProfileSection />
       </div>

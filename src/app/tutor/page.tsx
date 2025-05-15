@@ -18,7 +18,7 @@ export default function TutorDetails() {
     void getTutorId();
   }, [getTutorId]);
 
-  console.log('tutorData', tutorData);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto p-8">

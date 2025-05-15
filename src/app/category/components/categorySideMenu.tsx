@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function categorySideMenu({ subjects }: { subjects: Subjects }) {
   return (
-    <div className="w-full md:w-1/4 p-4 rounded-lg mr-6">
+    <div className="w-full md:w-1/4 p-4 mr-6 border-r-2 border-gray-400/80">
       <h2 className="text-2xl font-bold text-indigo-700 mb-4">
         หมวดหมู่ติวเตอร์
       </h2>
