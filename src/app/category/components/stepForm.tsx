@@ -53,6 +53,7 @@ export default function StepForm() {
     subjectCategoryId: Number(subjectCategory || 0),
     status: "PENDING",
   });
+  console.log(formData);
 
   const options = provinces.map((province) => ({
     label: province.name_th,
@@ -127,7 +128,7 @@ export default function StepForm() {
             onChange={(name, selected) => {
               setFormData((prev) => ({
                 ...prev,
-                [name]: selected.join(","),
+                [name]: selected.join(""),
               }));
               handleNextStep();
             }}
@@ -164,7 +165,7 @@ export default function StepForm() {
               value={formData.fullName}
               onChange={handleChange}
               name="fullName"
-              label="ชื่อ-นามสกุล"
+              label="ชื่อเล่น"
             />
             <LabeledInput
               className="text-start"
