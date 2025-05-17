@@ -28,7 +28,7 @@ async function fetchFromApi<T>({
   config?: FetchConfig;
   requiresAuth?: boolean;
   baseUrl?: string;
-}): Promise<ApiResponse<T>> {
+}): Promise<ApiResponse<T>> { 
   try {
     const token = await getCookie("access_token");
 

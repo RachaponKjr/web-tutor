@@ -34,7 +34,7 @@ export default function TutorCard({
       <p className="text-gray-700 text-sm line-clamp-3">{description}</p>
 
       <div className="mt-4">
-        <Link className="inline-block cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition text-sm" href={`/tutor?tutorId=${userId}`}>
+        <Link className="inline-block cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition text-sm" href={`/tutor/${userId}`}>
           ดูโปรไฟล์ติวเตอร์
         </Link>
       </div>
